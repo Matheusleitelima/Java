@@ -1,18 +1,18 @@
 # Métodos em Java
 
-Métodos são blocos de código reutilizáveis que executam uma tarefa específica.
+Os métodos são blocos de código reutilizáveis que executam uma tarefa específica.
 
-Eles ajudam a organizar o código, evitar repetição e tornar os programas mais fáceis de manter.
+Eles ajudam a organizar o programa, evitar repetição de código e facilitar a manutenção da aplicação.
 
-> Em outras linguagens, métodos também são conhecidos como **funções**.
+> Em outras linguagens, métodos também são conhecidos como funções.
 
 ---
 
-# O que é um Método?
+# Criando um Método
 
-Um método é um bloco de código que só será executado quando for chamado.
+Um método deve ser declarado dentro de uma classe.
 
-## Estrutura Básica
+## Sintaxe
 
 ```java
 public class Main {
@@ -26,34 +26,18 @@ public class Main {
 
 ### Componentes
 
-| Parte | Descrição |
-|---------|-----------|
-| `static` | Permite chamar o método sem criar um objeto |
-| `void` | Indica que o método não retorna valor |
-| `myMethod()` | Nome do método |
-| `{}` | Bloco de código do método |
-
----
-
-# Criando um Método
-
-```java
-public class Main {
-
-    static void myMethod() {
-        System.out.println("I just got executed!");
-    }
-
-}
-```
-
-Neste exemplo, o método apenas imprime uma mensagem.
+| Elemento     | Descrição                                   |
+| ------------ | ------------------------------------------- |
+| `static`     | Permite chamar o método sem criar um objeto |
+| `void`       | Indica que o método não retorna valor       |
+| `myMethod()` | Nome do método                              |
+| `{}`         | Bloco de código do método                   |
 
 ---
 
 # Chamando um Método
 
-Para executar um método, basta chamá-lo pelo nome.
+Após criar um método, ele pode ser executado através de uma chamada.
 
 ```java
 public class Main {
@@ -77,11 +61,9 @@ I just got executed!
 
 ---
 
-# Parâmetros
+# Parâmetros e Argumentos
 
-Parâmetros permitem enviar informações para um método.
-
-## Exemplo
+Informações podem ser enviadas para um método através de parâmetros.
 
 ```java
 public class Main {
@@ -109,28 +91,12 @@ Jenny Refsnes
 Anja Refsnes
 ```
 
----
+## Diferença
 
-# Parâmetros x Argumentos
-
-| Termo | Significado |
-|---------|------------|
-| Parâmetro | Variável declarada no método |
+| Termo     | Significado                      |
+| --------- | -------------------------------- |
+| Parâmetro | Variável declarada no método     |
 | Argumento | Valor enviado ao chamar o método |
-
-Exemplo:
-
-```java
-static void myMethod(String nome)
-```
-
-- `nome` → parâmetro
-
-```java
-myMethod("Matheus");
-```
-
-- `"Matheus"` → argumento
 
 ---
 
@@ -166,11 +132,9 @@ Anja is 31
 
 ---
 
-# Método com If/Else
+# Métodos com If/Else
 
-Métodos podem conter estruturas condicionais normalmente.
-
-## Exemplo
+Métodos podem conter estruturas condicionais.
 
 ```java
 public class Main {
@@ -200,21 +164,11 @@ Access granted - You are old enough!
 
 ---
 
-# Métodos com Retorno
+# Retorno de Valores
 
-Quando queremos que um método devolva um valor, utilizamos um tipo de retorno em vez de `void`.
+Quando desejamos que um método devolva um valor, utilizamos um tipo de retorno em vez de `void`.
 
-## Sintaxe
-
-```java
-static tipo nomeMetodo() {
-    return valor;
-}
-```
-
----
-
-# Retornando um Valor
+## Exemplo
 
 ```java
 public class Main {
@@ -240,7 +194,7 @@ public class Main {
 
 ---
 
-# Retornando a Soma de Dois Valores
+# Retornando Dois Parâmetros
 
 ```java
 public class Main {
@@ -266,9 +220,7 @@ public class Main {
 
 ---
 
-# Armazenando o Retorno em uma Variável
-
-Esta é a forma mais recomendada.
+# Armazenando o Retorno
 
 ```java
 public class Main {
@@ -296,113 +248,252 @@ public class Main {
 
 ---
 
-# Void x Return
+# Sobrecarga de Métodos (Method Overloading)
 
-## Método sem retorno
+A sobrecarga permite criar vários métodos com o mesmo nome, desde que possuam parâmetros diferentes.
+
+## Exemplo
 
 ```java
-static void saudacao() {
-    System.out.println("Olá!");
-}
+int myMethod(int x)
+float myMethod(float x)
+double myMethod(double x, double y)
 ```
-
-- Executa uma ação.
-- Não devolve valor.
 
 ---
 
-## Método com retorno
+## Exemplo Prático
 
 ```java
-static int soma(int a, int b) {
-    return a + b;
+public class Main {
+
+    static int plusMethodInt(int x, int y) {
+        return x + y;
+    }
+
+    static double plusMethodDouble(double x, double y) {
+        return x + y;
+    }
+
+    public static void main(String[] args) {
+
+        int myNum1 = plusMethodInt(8, 5);
+        double myNum2 = plusMethodDouble(4.3, 6.26);
+
+        System.out.println("int: " + myNum1);
+        System.out.println("double: " + myNum2);
+
+    }
+
 }
 ```
 
-- Executa uma ação.
-- Devolve um valor.
+### Saída
+
+```text
+int: 13
+double: 10.56
+```
 
 ---
 
-# Boas Práticas
+# Escopo em Java
 
-✅ Use nomes descritivos:
+O escopo define onde uma variável pode ser acessada.
 
-```java
-calcularMedia()
-validarSenha()
-somarValores()
-```
+Uma variável só existe dentro da região onde foi criada.
 
-❌ Evite nomes genéricos:
+---
+
+# Escopo de Método
 
 ```java
-metodo1()
-teste()
-abc()
+public class Main {
+
+    public static void main(String[] args) {
+
+        int x = 100;
+
+        System.out.println(x);
+
+    }
+
+}
 ```
 
-✅ Faça cada método realizar apenas uma responsabilidade.
+A variável `x` só existe dentro do método `main()`.
 
-✅ Reutilize métodos para evitar repetição de código.
+---
+
+# Escopo de Bloco
+
+Variáveis criadas dentro de um bloco `{}` só podem ser utilizadas dentro dele.
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+
+        {
+
+            int x = 100;
+
+            System.out.println(x);
+
+        }
+
+    }
+
+}
+```
+
+Fora do bloco, `x` não existe mais.
+
+---
+
+# Escopo de Loop
+
+Variáveis declaradas dentro de um loop só existem durante a execução do loop.
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+
+        for (int i = 0; i < 5; i++) {
+            System.out.println(i);
+        }
+
+    }
+
+}
+```
+
+Após o término do loop, `i` não pode mais ser acessado.
+
+---
+
+# Recursão
+
+Recursão é uma técnica onde um método chama a si mesmo.
+
+Ela é útil para resolver problemas que podem ser divididos em versões menores do mesmo problema.
+
+---
+
+# Exemplo de Recursão
+
+```java
+public class Main {
+
+    public static int sum(int k) {
+
+        if (k > 0) {
+            return k + sum(k - 1);
+        } else {
+            return 0;
+        }
+
+    }
+
+    public static void main(String[] args) {
+
+        int result = sum(10);
+
+        System.out.println(result);
+
+    }
+
+}
+```
+
+### Saída
+
+```text
+55
+```
+
+---
+
+# Condição de Parada
+
+Todo método recursivo deve possuir uma condição de parada.
+
+Sem ela, ocorrerá recursão infinita.
+
+No exemplo anterior:
+
+```java
+if (k > 0)
+```
+
+Quando `k` chega a `0`, a recursão é encerrada.
+
+---
+
+# Recursão com Intervalo
+
+```java
+public class Main {
+
+    public static int sum(int start, int end) {
+
+        if (end > start) {
+            return end + sum(start, end - 1);
+        } else {
+            return end;
+        }
+
+    }
+
+    public static void main(String[] args) {
+
+        int result = sum(5, 10);
+
+        System.out.println(result);
+
+    }
+
+}
+```
+
+### Saída
+
+```text
+45
+```
+
+### Cálculo
+
+```text
+10 + 9 + 8 + 7 + 6 + 5 = 45
+```
 
 ---
 
 # Resumo
 
-| Conceito | Descrição |
-|-----------|------------|
-| Método | Bloco de código reutilizável |
-| `void` | Não retorna valor |
-| `return` | Retorna um valor |
-| Parâmetro | Variável recebida pelo método |
-| Argumento | Valor enviado ao método |
-| `static` | Permite chamar o método sem criar objeto |
-| Chamada de método | Executa o método |
-| Método com retorno | Devolve um valor para quem o chamou |
+| Conceito           | Descrição                              |
+| ------------------ | -------------------------------------- |
+| Método             | Bloco de código reutilizável           |
+| `void`             | Método sem retorno                     |
+| `return`           | Retorna um valor                       |
+| Parâmetro          | Variável recebida pelo método          |
+| Argumento          | Valor enviado ao método                |
+| Sobrecarga         | Mesmo método com parâmetros diferentes |
+| Escopo             | Região onde uma variável existe        |
+| Recursão           | Método chamando a si mesmo             |
+| Condição de parada | Impede recursão infinita               |
 
 ---
 
-# Sintaxes Mais Importantes para Decorar
+# Sintaxes Mais Importantes
 
-### Método sem parâmetros
+### Método simples
 
 ```java
 static void saudacao() {
-    System.out.println("Olá!");
+    System.out.println("Olá");
 }
 ```
 
-### Método com parâmetros
-
-```java
-static void saudacao(String nome) {
-    System.out.println(nome);
-}
-```
-
-### Método com retorno
-
-```java
-static int soma(int a, int b) {
-    return a + b;
-}
-```
-
-### Chamando um método
-
-```java
-saudacao();
-```
-
-### Chamando com argumentos
-
-```java
-saudacao("Matheus");
-```
-
-### Recebendo retorno
-
-```java
-int resultado = soma(5, 3);
-```
